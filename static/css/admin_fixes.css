@@ -39,24 +39,6 @@ table.dataTable thead th {
     white-space: nowrap;
 }
 
-table.dataTable thead .sorting::after,
-table.dataTable thead .sorting_asc::after,
-table.dataTable thead .sorting_desc::after {
-    position: absolute;
-    right: 8px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-table.dataTable thead .sorting::before,
-table.dataTable thead .sorting_asc::before,
-table.dataTable thead .sorting_desc::before {
-    position: absolute;
-    right: 8px;
-    top: 50%;
-    transform: translateY(-75%);
-}
-
 /* 4. DataTables wrapper top row alignment */
 .dataTables_wrapper .row:first-child {
     display: flex;
