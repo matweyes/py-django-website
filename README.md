@@ -43,6 +43,12 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
+For production, also collect static files into `STATIC_ROOT`:
+
+```bash
+python manage.py collectstatic --noinput
+```
+
 ### Seed the database (optional)
 
 Populate the database with sample data using Faker:

@@ -1,27 +1,60 @@
 {% extends "base.html" %}
 {% load crispy_forms_filters %}
 
+{% block title %}Kitchen Service - Dishes{% endblock %}
+
 {% block content %}
-  <h1>
-    Dish List
-    <a href="{% url 'kitchen:dish-create' %}" class="btn btn-primary link-to-page">
-      Create
-    </a>
-  </h1>
-  <form method="get" action="" class="form-inline">
-    {{ search_form|crispy }}
-    <input class="btn btn-secondary" type="submit" value="Search">
-  </form>
-  {% if dish_list %}
-    <ul>
-      {% for dish in dish_list %}
-        <li>
-          <a href="{% url 'kitchen:dish-detail' pk=dish.id %}">{{ dish.name }}</a>
-          ({{ dish.dish_type.name }}) - {{ dish.price }} $
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>There are no dishes in the kitchen.</p>
-  {% endif %}
+    <div class="card card-outline card-olive">
+        <div class="card-header">
+            <h3 class="card-title"><i class="fas fa-utensils"></i> Dishes</h3>
+            <div class="card-tools">
+                <a href="{% url 'kitchen:dish-create' %}" class="btn btn-sm btn-olive">
+                    <i class="fas fa-plus"></i> Create
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <form method="get" action="" class="form-inline mb-3">
+                {{ search_form|crispy }}
+                <input class="btn btn-secondary btn-sm ml-2" type="submit" value="Search">
+            </form>
+
+            {% if dish_list %}
+            <div class="row">
+                {% for dish in dish_list %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card card-widget widget-user-2 shadow-sm">
+                        <div class="widget-user-header bg-olive">
+                            <h5 class="widget-user-username">
+                                <a href="{% url 'kitchen:dish-detail' pk=dish.id %}" class="text-white">
+                                    {{ dish.name }}
+                                </a>
+                            </h5>
+                            <h6 class="widget-user-desc text-light">{{ dish.dish_type.name }}</h6>
+                        </div>
+                        <div class="card-footer p-0">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <span class="nav-link">
+                                        <i class="fas fa-dollar-sign text-olive"></i>
+                                        Price: <strong>{{ dish.price }} $</strong>
+                                    </span>
+                                </li>
+                                <li class="nav-item">
+                                    <span class="nav-link">
+                                        <i class="fas fa-user-tie text-olive"></i>
+                                        Cooks: <strong>{{ dish.cooks.count }}</strong>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+                <p class="text-muted">There are no dishes in the kitchen.</p>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}

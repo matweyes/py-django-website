@@ -1,37 +1,74 @@
 {% extends "base.html" %}
 
+{% block title %}Kitchen Service - {{ dish.name }}{% endblock %}
+
 {% block content %}
-  <h1>
-    {{ dish.name }}
-    <a href="{% url 'kitchen:dish-delete' pk=dish.id %}" class="btn btn-danger link-to-page">
-      Delete
-    </a>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card card-outline card-olive">
+                <div class="card-header">
+                    <h3 class="card-title"><i class="fas fa-utensils"></i> {{ dish.name }}</h3>
+                    <div class="card-tools">
+                        <a href="{% url 'kitchen:dish-update' pk=dish.id %}" class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <a href="{% url 'kitchen:dish-delete' pk=dish.id %}" class="btn btn-sm btn-outline-danger">
+                            <i class="fas fa-trash"></i> Delete
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">Type</dt>
+                        <dd class="col-sm-8">{{ dish.dish_type.name }}</dd>
+                        <dt class="col-sm-4">Price</dt>
+                        <dd class="col-sm-8">{{ dish.price }} $</dd>
+                        <dt class="col-sm-4">Description</dt>
+                        <dd class="col-sm-8">{{ dish.description }}</dd>
+                    </dl>
+                </div>
+            </div>
 
-    <a href="{% url 'kitchen:dish-update' pk=dish.id %}" class="btn btn-secondary link-to-page">
-      Update
-    </a>
-  </h1>
-  <p><strong>Type:</strong> {{ dish.dish_type.name }}</p>
-  <p><strong>Price:</strong> {{ dish.price }} $</p>
-  <p><strong>Description:</strong> {{ dish.description }}</p>
-  <h1>
-    Cooks
+            <div class="card card-outline card-info">
+                <div class="card-header">
+                    <h3 class="card-title"><i class="fas fa-user-tie"></i> Assigned Cooks</h3>
+                    <div class="card-tools">
+                        {% if dish in user.dishes.all %}
+                            <a href="{% url 'kitchen:toggle-dish-assign' pk=dish.id %}" class="btn btn-sm btn-danger">
+                                <i class="fas fa-user-minus"></i> Remove me
+                            </a>
+                        {% else %}
+                            <a href="{% url 'kitchen:toggle-dish-assign' pk=dish.id %}" class="btn btn-sm btn-success">
+                                <i class="fas fa-user-plus"></i> Assign me
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <ul class="list-group list-group-flush">
+                        {% for cook in dish.cooks.all %}
+                        <li class="list-group-item">
+                            <i class="fas fa-user"></i>
+                            {{ cook.username }}
+                            <span class="text-muted">({{ cook.first_name }} {{ cook.last_name }})</span>
+                        </li>
+                        {% empty %}
+                        <li class="list-group-item text-muted">No cooks assigned yet.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-    {% if dish in user.dishes.all %}
-      <a href="{% url 'kitchen:toggle-dish-assign' pk=dish.id %}" class="btn btn-danger link-to-page">
-        Remove me from this dish
-      </a>
-    {% else %}
-      <a href="{% url 'kitchen:toggle-dish-assign' pk=dish.id %}" class="btn btn-success link-to-page">
-        Assign me to this dish
-      </a>
-    {% endif %}
-
-  </h1>
-  <hr>
-  <ul>
-    {% for cook in dish.cooks.all %}
-      <li>{{ cook.username }} ({{ cook.first_name }} {{ cook.last_name }})</li>
-    {% endfor %}
-  </ul>
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top"
+                     src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=250&fit=crop"
+                     alt="Dish">
+                <div class="card-body text-center">
+                    <span class="badge badge-olive badge-lg">{{ dish.dish_type.name }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

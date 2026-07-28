@@ -1,7 +1,16 @@
-{% extends "base.html" %}
+{% extends "adminlte/login.html" %}
+{% load i18n %}
 
-{% block content %}
-<p>Logged out!</p>
+{% block logo_text %}<b>Kitchen</b> Service{% endblock %}
 
-<a href="{% url 'login'%}">Click here to login again.</a>
+{% block login_form %}
+    <div class="text-center">
+        <p><i class="fas fa-check-circle fa-3x text-success mb-3"></i></p>
+        <h5>You have been logged out.</h5>
+        <a href="{% url 'login' %}" class="btn btn-olive btn-block mt-3">
+            <i class="fas fa-sign-in-alt"></i> {% trans 'Login again' %}
+        </a>
+    </div>
 {% endblock %}
+
+{% block login_form_links %}{% endblock %}

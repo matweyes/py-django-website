@@ -1,8 +1,88 @@
-body {
-    margin-top: 20px;
+/* Kitchen Service - Custom Styles */
+
+/* Olive color scheme */
+.bg-olive {
+    background-color: #3d9970 !important;
 }
 
-.link-to-page {
-    float: right;
-    margin: 0 2px 0 2px;
+.btn-olive {
+    background-color: #3d9970;
+    border-color: #3d9970;
+    color: #fff;
+}
+
+.btn-olive:hover {
+    background-color: #357a5c;
+    border-color: #357a5c;
+    color: #fff;
+}
+
+.badge-olive {
+    background-color: #3d9970;
+    color: #fff;
+}
+
+.card-outline.card-olive {
+    border-top: 3px solid #3d9970;
+}
+
+/* Info boxes */
+.info-box {
+    min-height: 80px;
+}
+
+.info-box-icon {
+    width: 70px;
+    font-size: 1.6rem;
+}
+
+/* Profile page */
+.profile-user-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+/* Sidebar brand image */
+.brand-image {
+    width: 33px;
+    height: 33px;
+    object-fit: cover;
+}
+
+/* Widget cards in dish list */
+.widget-user-2 .widget-user-header {
+    padding: 15px;
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.widget-user-2 .widget-user-username {
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.widget-user-2 .widget-user-desc {
+    font-size: 0.85rem;
+}
+
+/* Smooth card images */
+.card-img-top {
+    object-fit: cover;
+    max-height: 250px;
+}
+
+/* Login page branding */
+.login-logo b {
+    color: #3d9970;
+}
+
+/* Social auth links removal (hide default adminlte social section) */
+.social-auth-links {
+    display: none !important;
+}
+
+/* Hide default adminlte login extras (forgot password, register) */
+.login-card-body>p.mb-1,
+.login-card-body>p.mb-0 {
+    display: none;
 }
