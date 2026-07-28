@@ -1,0 +1,75 @@
+/* Admin layout fixes for adminlte4_theme */
+
+/* 1. Space between Filter and Add buttons */
+#changelist .float-sm-right {
+    margin-left: 8px;
+    margin-bottom: 5px;
+}
+
+/* 2. Actions bar - align Go button with dropdown */
+.actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.actions label,
+.actions select,
+.actions .button {
+    vertical-align: middle;
+}
+
+.actions select {
+    height: 31px;
+    margin-right: 4px;
+}
+
+.actions .button {
+    display: inline-block;
+    padding: 4px 12px;
+    vertical-align: middle;
+    line-height: 1.5;
+}
+
+/* 3. DataTables sorting icons alignment */
+table.dataTable thead th {
+    position: relative;
+    padding-right: 24px !important;
+    white-space: nowrap;
+}
+
+table.dataTable thead .sorting::after,
+table.dataTable thead .sorting_asc::after,
+table.dataTable thead .sorting_desc::after {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+table.dataTable thead .sorting::before,
+table.dataTable thead .sorting_asc::before,
+table.dataTable thead .sorting_desc::before {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-75%);
+}
+
+/* 4. DataTables wrapper top row alignment */
+.dataTables_wrapper .row:first-child {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+/* 5. Prevent search form from collapsing into buttons */
+#changelist-search {
+    margin-bottom: 5px;
+}
+
+/* 6. DataTables info + search row spacing */
+.dataTables_wrapper .dataTables_filter {
+    margin-bottom: 8px;
+}
