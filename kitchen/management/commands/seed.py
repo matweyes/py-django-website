@@ -65,7 +65,7 @@ DISH_NAMES = {
 
 
 class Command(BaseCommand):
-    help = "Seed the database with sample data using Faker"
+    help = "Seed the database with sample data using Faker"  # noqa: VNE003
 
     def add_arguments(self, parser):
         parser.add_argument(
