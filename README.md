@@ -43,6 +43,30 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
+### Seed the database (optional)
+
+Populate the database with sample data using Faker:
+
+```bash
+python manage.py seed
+```
+
+Options:
+
+| Flag | Description | Default |
+|---|---|---|
+| `--cooks N` | Number of cooks to create | 10 |
+| `--dishes N` | Number of dishes to create | 30 |
+| `--clear` | Clear existing data before seeding | off |
+
+Examples:
+
+```bash
+python manage.py seed                          # 10 cooks, 30 dishes
+python manage.py seed --cooks 5 --dishes 15    # custom amounts
+python manage.py seed --clear                  # wipe & reseed
+```
+
 ### Run the server
 
 ```bash
