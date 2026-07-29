@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 from os import getenv
 
+from django.conf.global_settings import STORAGES
 
 # Build paths inside the project like this: BASE_DIR / "subdir".
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -157,7 +158,12 @@ if not DEBUG:
 
     # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
     # and renames the files with unique names for each version to support long-term caching
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STORAGES = {
+        "staticfiles": {
+            "BACKEND": "monkey_patch.CompressedManifestStaticFilesStorage",
+        },
+    }
+    WHITENOISE_MANIFEST_STRICT = False
 
 STATICFILES_DIRS = (BASE_DIR / "static",)
 
@@ -165,5 +171,3 @@ STATICFILES_DIRS = (BASE_DIR / "static",)
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-WHITENOISE_MANIFEST_STRICT = False
