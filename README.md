@@ -94,3 +94,7 @@ python manage.py test
 ```bash
 flake8
 ```
+
+## Live demo
+A live demo of the application is available at [https://py-django-website.onrender.com/](https://py-django-website.onrender.com/).
+You can log in with the following credentials: `admin` / `admin`
