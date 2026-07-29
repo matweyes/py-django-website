@@ -1,0 +1,74 @@
+{% load static %}
+<aside class="main-sidebar sidebar-dark-olive elevation-4">
+    <a href="{% url 'kitchen:index' %}" class="brand-link">
+        <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=80&h=80&fit=crop"
+             alt="Kitchen Logo" class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">Kitchen Service</span>
+    </a>
+
+    <div class="sidebar">
+        {% if user.is_authenticated %}
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <i class="fas fa-user-circle fa-2x text-light mt-1"></i>
+            </div>
+            <div class="info">
+                <a href="{{ user.get_absolute_url }}" class="d-block">
+                    {{ user.get_username }}
+                </a>
+            </div>
+        </div>
+        {% endif %}
+
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                <li class="nav-header">NAVIGATION</li>
+                <li class="nav-item">
+                    <a href="{% url 'kitchen:index' %}" class="nav-link">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'kitchen:cook-list' %}" class="nav-link">
+                        <i class="nav-icon fas fa-user-tie"></i>
+                        <p>Cooks</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'kitchen:dish-list' %}" class="nav-link">
+                        <i class="nav-icon fas fa-utensils"></i>
+                        <p>Dishes</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'kitchen:dish-type-list' %}" class="nav-link">
+                        <i class="nav-icon fas fa-list"></i>
+                        <p>Dish Types</p>
+                    </a>
+                </li>
+
+                <li class="nav-header">ACTIONS</li>
+                <li class="nav-item">
+                    <a href="{% url 'kitchen:cook-create' %}" class="nav-link">
+                        <i class="nav-icon fas fa-user-plus"></i>
+                        <p>Add Cook</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'kitchen:dish-create' %}" class="nav-link">
+                        <i class="nav-icon fas fa-plus-circle"></i>
+                        <p>Add Dish</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'kitchen:dish-type-create' %}" class="nav-link">
+                        <i class="nav-icon fas fa-folder-plus"></i>
+                        <p>Add Dish Type</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>

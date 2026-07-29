@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %}Kitchen Service - {{ object|yesno:"Update,Create" }} Dish{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card card-outline card-olive">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-{{ object|yesno:'edit,plus' }}"></i>
+                        {{ object|yesno:"Update,Create" }} Dish
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form action="" method="post" novalidate>
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-olive">
+                            <i class="fas fa-save"></i> Submit
+                        </button>
+                        <a href="{% url 'kitchen:dish-list' %}" class="btn btn-secondary">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

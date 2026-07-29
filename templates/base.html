@@ -1,0 +1,38 @@
+{% extends "adminlte/base.html" %}
+{% load static query_transform %}
+
+{% block title %}Kitchen Service{% endblock %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}
+
+{% block nav_header %}
+    {% include "includes/header.html" %}
+{% endblock %}
+
+{% block nav_sidebar %}
+    {% include "includes/sidebar.html" %}
+{% endblock %}
+
+{% block content_header %}{% endblock %}
+
+{% block content_outer %}
+<section class="content">
+    {% block messages %}
+        {% include "adminlte/lib/_messages.html" %}
+    {% endblock %}
+
+    {% block content %}{% endblock %}
+
+    {% block pagination %}
+        {% include "includes/pagination.html" %}
+    {% endblock %}
+</section>
+{% endblock %}
+
+{% block footer_left %}
+    <strong>Kitchen Service</strong> &mdash; Manage your kitchen with ease.
+{% endblock %}
+
+{% block footer_right %}{% endblock %}

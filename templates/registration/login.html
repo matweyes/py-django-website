@@ -1,0 +1,54 @@
+{% extends "registration/login_base.html" %}
+{% load i18n %}
+
+{% block logo_text %}<b>Kitchen</b> Service{% endblock %}
+
+{% block login_form %}
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                <p class="alert alert-danger">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <div class="input-group mb-3">
+            <input type="text" name="username" class="form-control"
+                   placeholder="{% trans 'Username' %}"
+                   value="{{ form.username.value|default:'' }}"
+                   autofocus>
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-user"></span>
+                </div>
+            </div>
+        </div>
+        {% if form.username.errors %}
+            <p class="text-danger text-sm">{{ form.username.errors.0 }}</p>
+        {% endif %}
+
+        <div class="input-group mb-3">
+            <input type="password" name="password" class="form-control"
+                   placeholder="{% trans 'Password' %}">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                </div>
+            </div>
+        </div>
+        {% if form.password.errors %}
+            <p class="text-danger text-sm">{{ form.password.errors.0 }}</p>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-12">
+                <button type="submit" class="btn btn-olive btn-block">
+                    <i class="fas fa-sign-in-alt"></i> {% trans 'Sign In' %}
+                </button>
+            </div>
+        </div>
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+{% endblock %}
+
+{% block login_form_links %}{% endblock %}
