@@ -95,7 +95,7 @@ class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class DishListView(SearchableListMixin, LoginRequiredMixin, generic.ListView):
     model = Dish
-    paginate_by = 20
+    paginate_by = 15
     queryset = Dish.objects.select_related("dish_type")
     search_form_class = DishSearchForm
     search_field = "name"
